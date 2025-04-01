@@ -21,12 +21,15 @@ jobs:
           ls -la
       
       - name: Install dependencies
+        working-directory: ./vue-calculator
         run: npm install
       
       - name: Build the application
+        working-directory: ./vue-calculator
         run: npm run build
       
       - name: Export static site
+        working-directory: ./vue-calculator
         run: npm run generate
       
       - name: Deploy to production via SSH
@@ -36,6 +39,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          working-directory: ./vue-calculator
           source: ".output/public/"
           target: "/nuxt-calculator/"
           strip_components: 1
