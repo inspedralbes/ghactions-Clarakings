@@ -39,8 +39,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          working-directory: ./vue-calculator
-          source: ".output/public/"
-          target: "/nuxt-calculator/"
+          source: "/vue-calculator/.output/public/"
+          target: "/vue-calculator/nuxt-calculator/"
           strip_components: 1
           rm: true
