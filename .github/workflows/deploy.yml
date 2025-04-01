@@ -26,7 +26,7 @@ jobs:
       
       - name: Build the application
         working-directory: ./vue-calculator  # Same path as above
-        run: npm run build
+        run: npm run generate
       
       - name: Deploy to production via SSH
         uses: appleboy/scp-action@master
