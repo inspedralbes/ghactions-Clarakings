@@ -22,7 +22,7 @@ jobs:
       
       - name: Install dependencies
         working-directory: ./vue-calculator
-        run: npm install -g n
+        run: npm install -g nuxt
       
       - name: Build the application
         working-directory: ./vue-calculator
