@@ -27,8 +27,9 @@ jobs:
       - name: Upgrade node
         working-directory: ./vue-calculator
         run: |
-          nvm install 18
-          nvm use 18
+          npm install -g n
+          n latest
+
 
 
       - name: Build the application
