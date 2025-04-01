@@ -1,36 +1,34 @@
-name: Deploy Vue.js App to Server
-
+name: Deploy Vue.js Calculator to Server
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Utilitza la versió de Node.js que necessitis
-
+          node-version: '16'
+      
       - name: Install dependencies
         run: npm install
-
+      
       - name: Build the application
-        run: npm run build  # Això crea la carpeta dist
-
+        run: npm run build
+      
       - name: Deploy to production via SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22  # El port per defecte és el 22
-          script: |
-            rm -rf /vue-calculator/dist/*
-            cp -r ./dist/* /vue-calculator/dist/
+          port: 22
+          source: "dist/"
+          target: "/vue-calculator/"
+          strip_components: 0
+          rm: true
