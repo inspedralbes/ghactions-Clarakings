@@ -15,10 +15,17 @@ jobs:
         with:
           node-version: '16'
       
+      - name: Debug - List directory contents
+        run: |
+          pwd
+          ls -la
+      
       - name: Install dependencies
+        working-directory: ./vue-calculator  # Adjust this path based on your repository structure
         run: npm install
       
       - name: Build the application
+        working-directory: ./vue-calculator  # Same path as above
         run: npm run build
       
       - name: Deploy to production via SSH
@@ -28,7 +35,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          source: "dist/"
+          source: "vue-calculator/dist/"  # Adjust based on where your dist folder is
           target: "/vue-calculator/"
-          strip_components: 0
+          strip_components: 1  # This will strip the vue-calculator part from the path
           rm: true
