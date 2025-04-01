@@ -1,4 +1,4 @@
-name: Deploy Vue.js Calculator to Server
+name: Deploy Nuxt Calculator to Server
 on:
   push:
     branches:
@@ -21,11 +21,12 @@ jobs:
           ls -la
       
       - name: Install dependencies
-        working-directory: ./vue-calculator  # Adjust this path based on your repository structure
         run: npm install
       
       - name: Build the application
-        working-directory: ./vue-calculator  # Same path as above
+        run: npm run build
+      
+      - name: Export static site
         run: npm run generate
       
       - name: Deploy to production via SSH
@@ -35,7 +36,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          source: "vue-calculator/dist/"  # Adjust based on where your dist folder is
-          target: "/vue-calculator/"
-          strip_components: 1  # This will strip the vue-calculator part from the path
+          source: ".output/public/"
+          target: "/nuxt-calculator/"
+          strip_components: 1
           rm: true
