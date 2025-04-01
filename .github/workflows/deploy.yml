@@ -19,7 +19,7 @@ jobs:
           node-version: '16'  # Utilitza la versió de Node.js que necessitis
 
       - name: Install dependencies
-        run: npm npm install
+        run: npm install
 
       - name: Build the application
         run: npm run build  # Això crea la carpeta dist
