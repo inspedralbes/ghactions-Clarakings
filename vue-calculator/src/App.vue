@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import Calculator from './components/Calculator.vue';
+import CalculatorApp from "@/components/CalculatorApp.vue";
 
 export default {
   name: 'App',
   components: {
-    Calculator,
+    CalculatorApp,
   },
 };
 </script>
