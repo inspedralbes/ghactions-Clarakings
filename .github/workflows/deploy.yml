@@ -13,25 +13,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      
+          node-version: '18'  # 🔹 CAMBIADO de '16' a '18'
+
       - name: Debug - List directory contents
         run: |
           pwd
           ls -la
-      
+
       - name: Install dependencies
         working-directory: ./vue-calculator
-        run: npm install @nuxt/kit
+        run: npm install  # 🔹 Instalamos TODAS las dependencias correctamente
       
-      - name: Upgrade node
-        working-directory: ./vue-calculator
-        run: |
-          npm install -g n
-          n latest
-
-
-
       - name: Build the application
         working-directory: ./vue-calculator
         run: npm run build
