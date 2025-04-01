@@ -22,7 +22,7 @@ jobs:
       
       - name: Install dependencies
         working-directory: ./vue-calculator
-        run: fnm install 22
+        run: nvm install -g n
       
       - name: Build the application
         working-directory: ./vue-calculator
